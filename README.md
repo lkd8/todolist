@@ -29,3 +29,22 @@ O `AppNavigation` define o `NavHost` da aplicação. A rota do formulário é co
 
 ### 6. MainActivity
 A `MainActivity` serve como ponto de entrada. Sua responsabilidade foi reduzida à inicialização do banco de dados `AppDatabase`, criação da `TarefaViewModel` utilizando sua `Factory` para injeção do repositório, e inicialização da árvore de componentes Compose através do `AppNavigation`.
+## Evidências
+
+### 01 - Minhas Tarefas
+![Minhas Tarefas](docs/evidencias/01Minhas-Tarefas.png)
+
+### 02 - Nova Tarefa
+![Nova Tarefa](docs/evidencias/02Nova-Tarefa.png)
+
+### 03 - Nova Tarefa
+![Nova Tarefa](docs/evidencias/03Nova-Tarefa.png)
+
+### 04 - Minhas Tarefas
+![Minhas Tarefas](docs/evidencias/04Minhas-Tarefas.png)
+
+### 05 - Editar Tarefa
+![Editar Tarefa](docs/evidencias/05Editar-Tarefa.png)
+
+### 06 - Tarefa Concluída
+![Tarefa Concluída](docs/evidencias/06Tarefa-Concluida.png)
