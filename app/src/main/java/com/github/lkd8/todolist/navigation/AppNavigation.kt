@@ -1,12 +1,12 @@
-package carreiras.com.github.todolist.navigation
+package com.github.lkd8.todolist.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import carreiras.com.github.todolist.ui.FormularioTarefaScreen
-import carreiras.com.github.todolist.ui.ListaTarefasScreen
-import carreiras.com.github.todolist.viewmodel.TarefaViewModel
+import com.github.lkd8.todolist.ui.FormularioTarefaScreen
+import com.github.lkd8.todolist.ui.ListaTarefasScreen
+import com.github.lkd8.todolist.viewmodel.TarefaViewModel
 
 @Composable
 fun AppNavigation(viewModel: TarefaViewModel) {

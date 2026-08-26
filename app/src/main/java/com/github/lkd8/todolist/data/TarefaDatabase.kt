@@ -1,5 +1,4 @@
-
-package lkd8.com.github.todolist.data
+package com.github.lkd8.todolist.data
 
 import android.content.Context
 import androidx.room.Database

@@ -1,8 +1,7 @@
+package com.github.lkd8.todolist.repository
 
-package lkd8.com.github.todolist.repository
-
-import carreiras.com.github.todolist.data.Tarefa
-import carreiras.com.github.todolist.data.TarefaDao
+import com.github.lkd8.todolist.data.Tarefa
+import com.github.lkd8.todolist.data.TarefaDao
 import kotlinx.coroutines.flow.Flow
 
 class TarefaRepository(private val dao: TarefaDao) {

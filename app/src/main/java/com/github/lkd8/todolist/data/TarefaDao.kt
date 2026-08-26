@@ -1,4 +1,4 @@
-package lkd8.com.github.todolist.data
+package com.github.lkd8.todolist.data
 
 import androidx.room.Dao
 import androidx.room.Delete
