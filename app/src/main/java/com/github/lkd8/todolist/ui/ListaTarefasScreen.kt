@@ -28,6 +28,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextDecoration
@@ -37,6 +38,10 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.github.lkd8.todolist.data.Tarefa
 import com.github.lkd8.todolist.viewmodel.TarefaViewModel
+import androidx.compose.runtime.remember
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.setValue
 
 @Composable
 fun ListaTarefasScreen(
@@ -45,6 +50,7 @@ fun ListaTarefasScreen(
     onEditarTarefa: (Int) -> Unit
 ) {
     val tarefas by viewModel.tarefas.collectAsStateWithLifecycle()
+    var tarefaParaExcluir by remember { mutableStateOf<Tarefa?>(null) }
 
     ListaTarefasContent(
         tarefas = tarefas,
@@ -53,8 +59,41 @@ fun ListaTarefasScreen(
         onCheckedChange = { tarefa, concluida ->
             viewModel.atualizar(tarefa.copy(concluida = concluida))
         },
-        onDeletar = { tarefa -> viewModel.deletar(tarefa) }
+        onDeletar = { tarefa ->
+            tarefaParaExcluir = tarefa
+        }
     )
+
+    if (tarefaParaExcluir != null) {
+        AlertDialog(
+            onDismissRequest = { tarefaParaExcluir = null },
+            title = {
+                Text(text = "Confirmar Exclusão")
+            },
+            text = {
+                Text(text = "Deseja realmente excluir a tarefa \"${tarefaParaExcluir?.titulo}\"?")
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        tarefaParaExcluir?.let { tarefa ->
+                            viewModel.deletar(tarefa)
+                        }
+                        tarefaParaExcluir = null
+                    }
+                ) {
+                    Text(text = "Excluir")
+                }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = { tarefaParaExcluir = null }
+                ) {
+                    Text(text = "Cancelar")
+                }
+            }
+        )
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -195,5 +234,21 @@ private fun TarefaItemConcluidaPreview() {
         onCheckedChange = {},
         onEditar = {},
         onDeletar = {}
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ConfirmacaoExclusaoDialogPreview() {
+    AlertDialog(
+        onDismissRequest = {},
+        title = { Text("Confirmar Exclusão") },
+        text = { Text("Deseja realmente excluir a tarefa \"Estudar Compose\"?") },
+        confirmButton = {
+            TextButton(onClick = {}) { Text("Excluir") }
+        },
+        dismissButton = {
+            TextButton(onClick = {}) { Text("Cancelar") }
+        }
     )
 }
